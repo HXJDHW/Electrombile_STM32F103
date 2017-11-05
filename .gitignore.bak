@@ -1,0 +1,49 @@
+#以'#'开始的行，被视为注释
+
+#忽略掉所有文件名是.txt的文件
+*.txt
+
+#忽略所有生成的 html文件
+*.html
+
+#忽略所有的.o和.a文件
+#*.[oa]
+
+#只忽略当前目录下的Debug和settings文件和目录，子目录的Debug和settings不在忽略范围内
+Debug
+settings
+
+#Project
+Electrombile_STM32F103.ewt
+Electrombile_STM32F103.dep
+Electrombile_STM32F103.ewd
+
+#Libraries --> CMSIS --> startup
+startup_stm32f10x_xl.s
+startup_stm32f10x_cl.s
+startup_stm32f10x_ld.s
+startup_stm32f10x_ld_vl.s
+startup_stm32f10x_md.s
+startup_stm32f10x_md_vl.s
+startup_stm32f10x_hd_vl.s
+
+#Debug --> Exe
+*.out
+
+#Debug --> List
+*.map
+
+#Debug --> Obj
+*.pbd
+*.browse
+*.linf
+*.o
+*.pbi
+*.xcl
+
+#settings
+*.crun
+*.bat
+*.ps1
+*.dnx
+*.wsdt
