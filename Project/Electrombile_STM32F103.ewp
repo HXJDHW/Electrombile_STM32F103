@@ -2122,6 +2122,12 @@
     <group>
         <name>USER</name>
         <file>
+            <name>$PROJ_DIR$\..\USER\Electrombile_Common.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\USER\Electrombile_GPIO.c</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\USER\main.c</name>
         </file>
         <file>
