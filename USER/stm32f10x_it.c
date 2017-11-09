@@ -25,6 +25,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
+#include "electrombile_common.h"
 
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
@@ -144,6 +145,18 @@ void SysTick_Handler(void)
 /*  available peripheral interrupt handler's name please refer to the startup */
 /*  file (startup_stm32f10x_xx.s).                                            */
 /******************************************************************************/
+
+void USARTx_IRQHandler(void)
+{
+    uint16_t Data;
+    
+    if (USART_GetITStatus(USARTx,USART_IT_RXNE) != RESET)
+    {
+        Data = USART_ReceiveData(USARTx);
+      
+        USART_SendData(USARTx, Data);
+    }
+}
 
 /**
   * @brief  This function handles PPP interrupt request.

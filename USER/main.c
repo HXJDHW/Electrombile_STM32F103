@@ -5,7 +5,9 @@
 void main(void)
 {
     LED_Init();
-  
+    USARTx_GPIO_Init();
+    USARTx_Init();
+
     while(1)
     {
         GPIO_SetBits(LED0_GPIOx, LED0_Pin);
