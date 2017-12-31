@@ -26,6 +26,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
 #include "electrombile_common.h"
+#include "electrombile_usart.h"
 
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
@@ -146,6 +147,11 @@ void SysTick_Handler(void)
 /*  file (startup_stm32f10x_xx.s).                                            */
 /******************************************************************************/
 
+/**************************************
+* 处理串口1的接收中断 
+* 说明：将接收到的数据直接发送出去
+* 时间：2017-11-9
+**************************************/
 void USARTx_IRQHandler(void)
 {
     uint16_t Data;
@@ -154,7 +160,30 @@ void USARTx_IRQHandler(void)
     {
         Data = USART_ReceiveData(USARTx);
       
-        USART_SendData(USARTx, Data);
+        USART_SendData(USART_Screen, Data);
+        //等待完成发送
+        while(USART_GetFlagStatus(USART_Screen, USART_FLAG_TC) == RESET);
+    }
+}
+
+/**************************************
+* 处理屏串口的接收中断 
+* 说明：将接收到的数据直接发送出去
+* 时间：2017-11-16
+**************************************/
+void USART_Screen_IRQHandler(void)
+{
+    uint16_t Data;
+    
+    if (USART_GetITStatus(USART_Screen,USART_IT_RXNE) != RESET)
+    {
+        //将屏串口接收到的数据存入Data
+        Data = USART_ReceiveData(USART_Screen);
+      
+        //将Data中的数据上传至电脑
+        USART_SendByte(USARTx, Data);
+        //等待完成发送
+        while(USART_GetFlagStatus(USART_Screen, USART_FLAG_TC) == RESET);
     }
 }
 

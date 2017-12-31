@@ -6,5 +6,6 @@
 
 void LED_Init(void);
 void USARTx_GPIO_Init(void);
+void USART_Screen_GPIO_Init(void);
 
 #endif /* __ELECTROMBILE_COMMON_H */
